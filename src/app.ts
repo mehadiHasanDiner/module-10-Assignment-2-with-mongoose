@@ -1,12 +1,14 @@
 import express, { Request, Response } from "express";
+import { ProductRouters } from "./app/modules/product/product.route";
 
 const app = express();
-const port = 5000;
+
+app.use(express.json());
+
+app.use("/api/products", ProductRouters);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello");
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+export default app;
