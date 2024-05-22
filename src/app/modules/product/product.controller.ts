@@ -64,11 +64,28 @@ const updateProductById = async (req: Request, res: Response) => {
       productID,
       updatedProduct
     );
-
     res.json({
       success: true,
       message: "Product Updated successfully",
       data: result,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+      data: err,
+    });
+  }
+};
+
+const deleteProduct = async (req: Request, res: Response) => {
+  try {
+    const { productID } = req.params;
+    await ProductService.deleteProductFromDB(productID);
+    res.json({
+      success: true,
+      message: "Product Deleted successfully",
+      data: null,
     });
   } catch (err) {
     res.status(500).json({
@@ -84,4 +101,5 @@ export const productControllers = {
   getAllProducts,
   getSingleProduct,
   updateProductById,
+  deleteProduct,
 };
