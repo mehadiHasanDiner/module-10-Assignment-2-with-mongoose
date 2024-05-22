@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { ProductService } from "./product.service";
+import { productSchemaForValidation } from "./product.validation";
 
 const createProduct = async (req: Request, res: Response) => {
   try {
@@ -54,8 +55,33 @@ const getSingleProduct = async (req: Request, res: Response) => {
   }
 };
 
+const updateProductById = async (req: Request, res: Response) => {
+  try {
+    const { productID } = req.params;
+    const data = req.body;
+    const updatedProduct = productSchemaForValidation.parse(data);
+    const result = await ProductService.updateSingleProductFromDB(
+      productID,
+      updatedProduct
+    );
+
+    res.json({
+      success: true,
+      message: "Product Updated successfully",
+      data: result,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+      data: err,
+    });
+  }
+};
+
 export const productControllers = {
   createProduct,
   getAllProducts,
   getSingleProduct,
+  updateProductById,
 };

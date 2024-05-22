@@ -12,7 +12,7 @@ const variantSchema = new Schema<TVariant>(
       required: true,
     },
   },
-  { _id: false }
+  { _id: false },
 );
 
 const inventorySchema = new Schema<TInventory>(
@@ -20,7 +20,7 @@ const inventorySchema = new Schema<TInventory>(
     quantity: { type: Number, required: true },
     inStock: { type: Boolean, required: true },
   },
-  { _id: false }
+  { _id: false },
 );
 
 const productSchema = new Schema<TProduct>({
@@ -28,7 +28,7 @@ const productSchema = new Schema<TProduct>({
   description: { type: String, required: true },
   price: { type: Number, required: true },
   category: { type: String, required: true },
-  tags: [{ type: String, required: true }],
+  tags: { type: [String] },
   variants: {
     type: [variantSchema],
     required: true,
