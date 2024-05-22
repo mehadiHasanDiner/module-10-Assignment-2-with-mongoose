@@ -17,7 +17,7 @@ const inventoryValidationSchema = z.object({
 });
 
 // Define product schema
-export const productSchemaForValidation = z.object({
+const productSchemaForValidation = z.object({
   name: z.string().min(1, "Name is required"),
   description: z.string().min(1, "Description is required"),
   price: z.number().positive().min(1, "Price is required"),
@@ -27,4 +27,4 @@ export const productSchemaForValidation = z.object({
   inventory: inventoryValidationSchema,
 });
 
-export const productValidationSchema = productSchemaForValidation.partial();
+export default productSchemaForValidation;
