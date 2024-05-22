@@ -1,6 +1,5 @@
 import { Schema, model } from "mongoose";
 import { IOrder } from "./order.interface";
-import { ProductModel } from "../product/product.model";
 
 const orderSchema = new Schema<IOrder>({
   email: {
