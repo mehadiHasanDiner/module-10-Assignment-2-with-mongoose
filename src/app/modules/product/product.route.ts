@@ -1,15 +1,9 @@
-import express, { Request, Response } from "express";
-import { Product } from "../product.model";
+import express from "express";
+import { productControllers } from "./product.controller";
 
 const router = express.Router();
 
-router.post("/", async (req: Request, res: Response) => {
-  const result = await Product.create(req.body);
-  res.json({
-    success: true,
-    message: "Product created successfully!",
-    data: result,
-  });
-});
+router.post("/", productControllers.createProduct);
+router.get("/", productControllers.getAllStudents);
 
 export const ProductRouters = router;
