@@ -11,11 +11,15 @@ const createProduct = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err) {
-    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+      data: err,
+    });
   }
 };
 
-const getAllStudents = async (req: Request, res: Response) => {
+const getAllProducts = async (req: Request, res: Response) => {
   try {
     const result = await ProductService.getAllProductsFromDB();
     res.status(200).json({
@@ -24,11 +28,34 @@ const getAllStudents = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err) {
-    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+      data: err,
+    });
+  }
+};
+
+const getSingleProduct = async (req: Request, res: Response) => {
+  try {
+    const { productID } = req.params;
+    const result = await ProductService.getSingleProductFromDB(productID);
+    res.status(200).json({
+      success: true,
+      message: "Single Product data retrieved successfully",
+      data: result,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+      data: err,
+    });
   }
 };
 
 export const productControllers = {
   createProduct,
-  getAllStudents,
+  getAllProducts,
+  getSingleProduct,
 };
