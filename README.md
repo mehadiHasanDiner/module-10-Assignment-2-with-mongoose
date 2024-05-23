@@ -4,9 +4,9 @@
 
 This application constitutes a backend system developed using Node.js, Express, and TypeScript. It employs Mongoose to facilitate interactions with MongoDB, CORS for enabling cross-origin resource sharing, and Zod for schema validation. Within this README document, you will find comprehensive instructions detailing the setup and local execution of this application.
 
-## Requirement that needs for this application
+## Requirements that need for this application
 
-Prior to starting, please ensure that you fulfill the following prerequisites:
+Before starting, please ensure that you fulfill the following prerequisites:
 
 - Node.js (v14 or higher)
 - npm (v6 or higher)
@@ -31,7 +31,7 @@ Prior to starting, please ensure that you fulfill the following prerequisites:
    the file should have the required environment variables. For instance:
 
    ```env
-   DB_URL=mongodb://localhost:27017/mydatabase
+   DB_URL=mongodb://localhost:27017/database
    PORT=5000
    ```
 
